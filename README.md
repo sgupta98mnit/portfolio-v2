@@ -1,36 +1,81 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Sumit Gupta - Portfolio V2
+
+A premium, high-performance portfolio website built with **Next.js 15**, **Tailwind CSS v4**, and **Framer Motion**. Designed to showcase expertise in **Full Stack Development** and **Identity & Access Management (IAM)**.
+
+![Portfolio Preview](./public/preview.png)
+
+## Tech Stack
+
+- **Framework**: [Next.js 15](https://nextjs.org/) (App Router)
+- **Styling**: [Tailwind CSS v4](https://tailwindcss.com/)
+- **Animations**: [Framer Motion](https://www.framer.com/motion/)
+- **Icons**: [Lucide React](https://lucide.dev/)
+- **Language**: TypeScript
 
 ## Getting Started
 
-First, run the development server:
+First, install dependencies:
+
+```bash
+npm install
+```
+
+Run the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Docker Support
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+The application is containerized and ready for deployment.
 
-## Learn More
+### Build the Image
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+docker build -t portfolio .
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Run the Container
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```bash
+docker run -p 3000:3000 portfolio
+```
 
-## Deploy on Vercel
+Visit `http://localhost:3000` to view the app running in Docker.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Customization
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+All portfolio content is managed in a single data file for easy updates.
+
+- **Modify Content**: Edit `data/portfolio.ts` to update your bio, experience, projects, and skills.
+- **Update Resume**: Replace `public/resume.pdf` with your latest resume (keep the filename the same or update the link in `data/portfolio.ts`).
+
+## Project Structure
+
+```bash
+├── app/                  # Next.js App Router
+│   ├── globals.css       # Global styles (Tailwind theme)
+│   ├── layout.tsx        # Root layout (Navbar, Footer)
+│   └── page.tsx          # Main landing page
+├── components/           # React Components
+│   ├── layout/           # Navbar, Footer
+│   ├── sections/         # Hero, About, Experience, Projects, etc.
+│   └── ui/               # Reusable UI primitives (Button, Badge)
+├── data/                 # Content Source of Truth
+│   └── portfolio.ts      # Edit this to change text!
+├── public/               # Static Assets
+│   └── resume.pdf        # Downloadable resume
+└── lib/                  # Utilities
+    └── utils.ts          # Tailwind class merger
+```
+
+## Deployment
+
+The easiest way to deploy is via [Vercel](https://vercel.com).
+
+1. Push code to GitHub.
+2. Import project in Vercel.
+3. Deploy!
