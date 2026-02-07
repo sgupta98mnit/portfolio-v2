@@ -25,24 +25,28 @@ export const portfolioData = {
       role: "Senior Software Engineer",
       period: "July 2021 – July 2024",
       highlights: [
-        "Led a 12-member team delivering 10+ cloud-based Shopify apps (Inventory Sync, Salesforce Sync) built using Java and the Spring Framework, owning planning, code reviews, and releases.",
-        "Architected enterprise IAM solutions using SAML, OAuth 2.0, and JWT within Java/Spring Boot ecosystems.",
-        "Resolved recurring production incidents (DB timeouts, Memcached crashes, GraphQL memory leaks), reducing on-call escalations.",
-        "Automated CI/CD and Docker deployments on AWS behind a load balancer, reducing release effort and enabling faster rollbacks.",
-        "Implemented SCIM 2.0 provisioning and PKCE to enhance security for mobile and single-page applications."
+        "Led a cross-functional team of 12 software engineers using Agile methodologies to develop and maintain over 10 cloud-based Shopify applications.",
+        "Contributed to full-stack development, conducted code reviews, and resolved critical production bugs.",
+        "Implemented and integrated Identity and Access Management (IAM) protocols including SAML, OAuth 2.0, and JWT for secure authentication and authorization.",
+        "Diagnosed and resolved production issues like database connection timeouts, Memcache crashes, thread concurrency problems, and memory leaks during GraphQL client integration.",
+        "Independently developed, tested, and deployed 'Inventory Sync' and 'Salesforce Sync' applications on the Shopify App Store using Spring Boot.",
+        "Optimized CI/CD pipelines by profiling codebases and automating Docker-based deployments in an AWS load-balanced architecture.",
+        "Improved system scalability and deployment efficiency by 40%."
       ],
-      tech: ["Java", "Spring Boot", "React", "GraphQL", "Redis", "AWS", "Docker"]
+      tech: ["Java", "Spring Boot", "Redis", "GraphQL", "Shopify Liquid", "PHP", "AWS", "Docker", "Kubernetes"]
     },
     {
       company: "ServiceNow",
       role: "Software Development Intern",
       period: "July 2020 – Nov 2020",
       highlights: [
-        "Integrated ML-driven enhancements into ServiceNow Universal Request using JavaScript (Client) and Java (Server).",
-        "Delivered mobile UI improvements using HTML5/CSS3 and built automated regression tests with Selenium/JUnit.",
-        "Collaborated in an Agile Scrum team to ship iterative product improvements."
+        "Integrated machine learning solutions into the ServiceNow platform to enhance Universal Request functionality using Java and JavaScript APIs.",
+        "Developed and customized dynamic user interfaces for the ServiceNow mobile app using HTML5, CSS3, and ServiceNow’s UI frameworks.",
+        "Implemented automated testing suites using Selenium and JUnit to validate ML features and mobile app enhancements.",
+        "Increased test coverage and ensured reliable workflows through robust testing strategies.",
+        "Collaborated with cross-functional teams and followed Agile/Scrum methodologies for timely and high-quality software delivery."
       ],
-      tech: ["Java", "JavaScript", "ServiceNow APIs", "Selenium", "HTML5/CSS3"]
+      tech: ["Java", "JavaScript", "HTML5", "CSS3", "Selenium", "JUnit", "ML Algorithms"]
     }
   ],
   projects: [
