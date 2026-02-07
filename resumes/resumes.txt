@@ -1,0 +1,146 @@
+--- START Resume_Sumit_Gupta.pdf ---
+Sumit Gupta Email: sgupta98mnit@gmail.com
+sumit-gupta.cloud Mobile: +1-716-748-9711
+Education
+• University at Buffalo Buffalo, NY
+Master of Science in Computer Science; GPA: - 3.67 Aug 2024 – Dec 2025
+• National Institute of Technology Jaipur, India
+Bachelor of Engineering in Electronics and Communication; GPA: (7.66/10.0) Aug 2017 – July 2021
+Experience
+• miniOrange Pune, India
+Senior Software Engineer July 2021 – July 2024
+◦ Led a 12-member team to deliver 10+ cloud-based Shopify apps; owned planning, code reviews, releases, and
+production support in an Agile/Scrum setup.
+◦ Implemented enterprise IAM using SAML, OAuth 2.0, and JWT, reducing onboarding friction and improving
+security posture for customer deployments.
+◦ Built and shipped Shopify App Store products ( Inventory Sync, Salesforce Sync) using Java and Spring
+Boot, supporting high-volume scheduled syncs and external API integrations.
+◦ Resolved recurring production incidents (DB connection timeouts, Memcached crashes, thread/concurrency
+issues, GraphQL memory leaks), cutting on-call escalations by improving stability and adding safeguards.
+◦ Automated CI/CD and Docker deployments on AWS behind a load balancer, reducing release effort and
+enabling faster rollbacks during incidents.
+◦ Tech: Java, Spring Boot, Redis, Memcached, GraphQL, PHP, Shopify Liquid, AWS, Docker,
+Kubernetes.
+• ServiceNow Hyderabad, India
+Software Development Intern July 2020 – Nov 2020
+◦ Integrated ML-driven enhancements into ServiceNow Universal Request using JavaScript (client) and Java
+(server) APIs, improving request routing and automation.
+◦ Delivered mobile UI improvements using HTML5, CSS3, and ServiceNow UI frameworks, improving usability
+across common request flows.
+◦ Built automated regression tests with Selenium and JUnit, increasing test coverage for new workflows and
+reducing manual QA effort.
+◦ Collaborated in a Scrum team, contributing to sprint planning, demos, and iterative releases.
+◦ Tech: Java, JavaScript, HTML5, CSS3, ServiceNow APIs, Selenium, JUnit.
+Projects
+• Radiant Clothing Link
+Built a full-stack e-commerce app using React.js, Redux, GraphQL, and Firebase. Implemented authentication with
+Firebase Auth, payments with Stripe, and scalable routing/state patterns ( React Router, Redux-Saga). Deployed
+on a VPS and tested with Jest/Enzyme.
+• Multi-Tenant Customer Support Platform (Tickets + Knowledge Base) Link
+Developed a multi-tenant backend using Spring Boot 3 and PostgreSQL with strict tenant isolation, RBAC, and
+JWT + refresh tokens. Implemented event-driven workflows via Kafka + Outbox, added Redis caching/throttling,
+Postgres FTS search, and MinIO attachment storage. Shipped with Flyway, OpenAPI, OpenTelemetry,
+Testcontainers, Docker Compose, and CI/CD on GitHub Actions.
+• FinCore - Event-Driven FinTech Microservices Platform Link
+Built an event-driven FinTech microservices system using NestJS and Next.js with API Gateway routing,
+JWT/RBAC, and Kafka-based communication. Implemented Saga transfers with idempotency keys (Redis) and
+retry-safe workflows. Designed an append-only double-entry ledger in PostgreSQL and a Fraud service with
+configurable rules. Added an ops UI ( Tailwind + shadcn/Radix), OpenAPI, structured logging ( Pino),
+OpenTelemetry/Prometheus, Jest tests, and Docker Compose orchestration with CI on GitHub Actions.
+• JavaFX Media Player Link
+Built a cross-platform media player using JavaFX and Java 8 with playback controls, seeking, playlists, and
+drag-and-drop import. Followed the MVC pattern and optimized performance via profiling.
+• Real-time Chat Application Link
+Built a real-time chat app using Node.js, Express, and Socket.io with rooms, location sharing, and notifications. Used
+Mustache.js for templating and tested with Mocha/Chai.
+• Monster Mania Link
+Built a responsive React.js app that fetches external API data and supports fast search/filter using React Hooks.
+Skills
+• Languages: Java, JavaScript/TypeScript, Python, SQL, C++, PHP, Bash Frameworks: Spring Boot,
+NestJS, Next.js, React
+• Backend: REST APIs, Authentication/Authorization (JWT, OAuth2, SAML), RBAC, Multi-tenancy,
+Microservices, API Gateway
+• Data & Messaging : PostgreSQL, Redis, Kafka, Full-Text Search, Event-driven workflows (Outbox/Saga),
+Idempotency
+• DevOps & Cloud: Docker, Terraform, Kubernetes, GitHub Actions, Jenkins, AWS, Azure, Nginx
+• Testing & Tools: JUnit, Jest, Testcontainers, Flyway, OpenAPI/Swagger, Postman, Git/GitHub, Maven,
+IntelliJ, VS Code, pgAdmin
+• Storage & Monitoring : MinIO (S3), Firebase, OpenTelemetry, Prometheus, Structured logging (Pino)
+--- END Resume_Sumit_Gupta.pdf ---
+
+--- START Resume_Sumit_Gupta___IAM.pdf ---
+Sumit GuptaEmail: sgupta98mnit@gmail.com
+sumit-gupta.cloud Mobile: +1-716-748-9711
+Education
+•University at BuffaloBuffalo, NY
+Master of Science in Computer Science; GPA: - 3.67 Aug 2024 – Dec 2025
+•National Institute of TechnologyJaipur, India
+Bachelor of Engineering in Electronics and Communication; GPA: (7.66/10.0) Aug 2017 – July 2021
+Experience
+•miniOrange Pune, India
+Senior Software Engineer (IAM / SSO Platform) Jul 2021 – Jul 2024
+◦Owned and maintained the company’s coreSSO/IAM productfor3+ years, supporting enterprise
+authentication, federation, and identity lifecycle workflows in production.
+◦Designed and implemented secure federation usingSAML 2.0,OAuth 2.0, andOIDC; delivered multiple
+customer integrations as IdP/SP with attribute/claim mapping, certificates, and metadata management.
+◦Added advanced auth-flow features includingPKCEsupport for public clients, improving security for mobile/SPA
+integrations and preventing authorization-code interception.
+◦Implemented and supportedSCIM 2.0 provisioning(create/update/deactivate users, groups, entitlements),
+enabling automated identity lifecycle management across external SaaS applications.
+◦Built and maintainedREST/SOAP web servicesfor IAM workflows (token issuance/validation, user lookup,
+policy checks, provisioning triggers) and integrated with downstream enterprise apps.
+◦Collaborated with security, platform, and customer teams to meet enterprise controls (auditability, secure secrets
+handling, least privilege), and authored runbooks + integration documentation for client onboarding.
+◦Troubleshot complex IAM incidents inLinux-hosted environments: SSO redirect loops, clock skew, certificate
+rotation issues, token validation failures, and federation misconfigurations; reduced escalations through better
+monitoring and guardrails.
+◦Worked with identity providers includingOkta,Auth0,AWS Cognito, andPing; guided customers through
+setup, testing, go-live, and post-go-live stabilization.
+◦Managed IAM configuration/customization changes usingGit-based workflows (branching, reviews, releases) and
+improved reliability via CI/CD + rollback-friendly deployments.
+◦Tech:Java, JavaScript, OAuth2/OIDC, SAML, JWT, PKCE, SCIM, REST/SOAP, Linux, Git, Docker, AWS,
+Redis/Memcached.
+•ServiceNow Hyderabad, India
+Software Development Intern Jul 2020 – Nov 2020
+◦Implemented platform enhancements usingJavaScript(client) andJava(server) APIs and delivered UI
+improvements withHTML/CSS.
+◦Built automated regression tests usingSeleniumandJUnitand collaborated in aScrumteam on iterative
+delivery.
+◦Tech:Java, JavaScript, HTML5, CSS3, Selenium, JUnit.
+Projects
+•Radiant ClothingLink
+Built a full-stack e-commerce app usingReact.js,Redux,GraphQL, andFirebase. Implemented authentication with
+Firebase Auth, payments withStripe, and scalable routing/state patterns (React Router,Redux-Saga). Deployed
+on aVPSand tested withJest/Enzyme.
+•Multi-Tenant Customer Support Platform (Tickets + Knowledge Base)Link
+Developed a multi-tenant backend usingSpring Boot 3andPostgreSQLwith strict tenant isolation,RBAC, and
+JWT + refresh tokens. Implemented event-driven workflows viaKafka + Outbox, addedRediscaching/throttling,
+Postgres FTSsearch, andMinIOattachment storage. Shipped withFlyway,OpenAPI,OpenTelemetry,
+Testcontainers,Docker Compose, and CI/CD onGitHub Actions.
+•FinCore - Event-Driven FinTech Microservices PlatformLink
+Built an event-driven FinTech microservices system usingNestJSandNext.jswith API Gateway routing,
+JWT/RBAC, andKafka-based communication. ImplementedSagatransfers withidempotency keys (Redis)and
+retry-safe workflows. Designed an append-onlydouble-entry ledgerinPostgreSQLand aFraudservice with
+configurable rules. Added an ops UI (Tailwind + shadcn/Radix),OpenAPI, structured logging (Pino),
+OpenTelemetry/Prometheus,Jesttests, andDocker Composeorchestration with CI onGitHub Actions.
+•JavaFX Media PlayerLink
+Built a cross-platform media player usingJavaFXandJava 8with playback controls, seeking, playlists, and
+drag-and-drop import. Followed theMVCpattern and optimized performance via profiling.
+•Real-time Chat ApplicationLink
+Built a real-time chat app usingNode.js,Express, andSocket.iowith rooms, location sharing, and notifications. Used
+Mustache.jsfor templating and tested withMocha/Chai.
+•Monster ManiaLink
+Built a responsiveReact.jsapp that fetches external API data and supports fast search/filter usingReact Hooks.
+Core Skills
+•Protocols Federation: SAML 2.0, OAuth 2.0, OpenID Connect (OIDC), JWT, PKCE, Token Exchange,
+JWK/JWKS, SCIM 2.0
+•SSO Identity: Identity Federation, IdP/SP integrations, SSO troubleshooting, MFA integrations, session
+management, claims/attribute mapping, provisioning/deprovisioning
+•Platforms: ForgeRock IDM (exposure/working knowledge), Okta, Auth0, AWS Cognito, Ping
+(PingFederate/PingOne concepts), Azure AD concepts
+•Engineering: Java, JavaScript, Groovy (scripting/customization), REST/SOAP APIs, Webhooks,
+JSON/XML, Git, CI/CD, Linux admin
+•Security: Least privilege, RBAC, secure token handling, audit logging, incident response, OWASP auth
+pitfalls
+--- END Resume_Sumit_Gupta___IAM.pdf ---
+
