@@ -12,7 +12,7 @@ export const portfolioData = {
     socials: {
       github: "https://github.com/sgupta98mnit",
       linkedin: "https://www.linkedin.com/in/sumit-gupta-2a6406160/",
-      email: "mailto:sgupta98mnit@gmail.com"
+      email: "mailto:sgupta98mnit@outlook.com"
     }
   },
   about: {

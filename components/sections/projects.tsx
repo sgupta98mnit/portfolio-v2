@@ -2,70 +2,95 @@
 
 import { motion } from "framer-motion";
 import { portfolioData } from "@/data/portfolio";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { ArrowUpRight, FolderGit2 } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import Link from "next/link";
 
 export function Projects() {
   const { projects } = portfolioData;
 
   return (
-    <section id="projects" className="py-24 bg-muted/30">
-      <div className="container mx-auto px-4 md:px-6">
+    <section id="projects" className="relative py-32 overflow-hidden">
+      {/* orbs */}
+      <div className="pointer-events-none absolute left-1/2 top-0 -translate-x-1/2 h-[500px] w-[800px] orb opacity-10"
+        style={{ background: "radial-gradient(ellipse, #7c3aed 0%, transparent 70%)" }} />
+
+      <div className="container mx-auto max-w-5xl px-4 md:px-6">
+
+        {/* heading */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
+          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+          className="mb-16"
         >
-          <h2 className="text-3xl font-bold tracking-tight mb-12 md:text-4xl">
-            Featured Projects
+          <span className="mb-3 inline-block text-xs font-semibold uppercase tracking-widest gradient-text">
+            Projects
+          </span>
+          <h2 className="text-4xl font-bold md:text-5xl text-white">
+            Things I've built.
           </h2>
+        </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {projects.map((project, index) => (
-              <motion.div
-                key={project.title}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: index * 0.1 }}
-                className="group relative flex flex-col rounded-lg border border-border bg-card p-6 shadow-sm transition-all hover:shadow-md hover:border-primary/50"
+        {/* grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+          {projects.map((project, index) => (
+            <motion.div
+              key={project.title}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: index * 0.08, ease: [0.16, 1, 0.3, 1] }}
+            >
+              <Link
+                href={project.link !== "#" ? project.link : "#projects"}
+                target={project.link !== "#" ? "_blank" : undefined}
+                rel="noopener noreferrer"
+                className="group gradient-border glass flex flex-col h-full rounded-2xl p-6 transition-all duration-500 hover:glow hover:-translate-y-1 block"
               >
-                <div className="mb-4 flex items-center justify-between">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary/10 text-primary">
-                    <FolderGit2 size={20} />
-                  </div>
-                  <Link href={project.link} target="_blank" className="text-muted-foreground hover:text-primary">
-                    <ArrowUpRight size={20} />
-                  </Link>
+                {/* top row */}
+                <div className="flex items-start justify-between mb-4">
+                  {/* category */}
+                  <span className="text-[10px] font-semibold uppercase tracking-widest text-violet-400/70">
+                    {project.description}
+                  </span>
+                  {/* arrow */}
+                  <ArrowUpRight
+                    size={18}
+                    className="shrink-0 text-white/20 transition-all duration-300 group-hover:text-violet-400 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                  />
                 </div>
 
-                <p className="mb-1 text-xs font-medium uppercase tracking-wider text-primary/70">
-                  {project.description}
-                </p>
-                <h3 className="mb-3 text-xl font-bold group-hover:text-primary transition-colors">
+                {/* title */}
+                <h3 className="mb-3 text-xl font-bold text-white transition-colors duration-300 group-hover:gradient-text">
                   {project.title}
                 </h3>
-                <p className="mb-6 text-sm text-muted-foreground flex-1 leading-relaxed">
+
+                {/* desc */}
+                <p className="mb-6 flex-1 text-sm text-white/40 leading-relaxed">
                   {project.longDescription}
                 </p>
 
+                {/* tech */}
                 <div className="flex flex-wrap gap-2 mt-auto">
                   {project.tech.slice(0, 4).map((t) => (
-                    <Badge key={t} variant="outline" className="text-[10px]">
+                    <span
+                      key={t}
+                      className="rounded-lg border border-white/6 bg-white/4 px-2.5 py-1 text-[11px] font-medium text-white/40 group-hover:border-violet-500/20 group-hover:text-white/60 transition-colors duration-300"
+                    >
                       {t}
-                    </Badge>
+                    </span>
                   ))}
                   {project.tech.length > 4 && (
-                    <Badge variant="outline" className="text-[10px]">+{project.tech.length - 4}</Badge>
+                    <span className="rounded-lg border border-white/6 bg-white/4 px-2.5 py-1 text-[11px] font-medium text-white/30">
+                      +{project.tech.length - 4}
+                    </span>
                   )}
                 </div>
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
+              </Link>
+            </motion.div>
+          ))}
+        </div>
       </div>
     </section>
   );

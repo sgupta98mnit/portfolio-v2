@@ -1,6 +1,10 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { Navbar } from "@/components/layout/navbar";
+import { Footer } from "@/components/layout/footer";
+import { SmoothScroll } from "@/components/ui/smooth-scroll";
+import { CustomCursor } from "@/components/ui/cursor";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -13,12 +17,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Sumit Gupta | Senior Software Engineer (IAM)",
-  description: "Senior Software Engineer specializing in Identity & Access Management (IAM), Cloud-Native Systems, and Scalable Digital Experiences.",
+  title: "Sumit Gupta | Senior Software Engineer",
+  description: "Senior Software Engineer specializing in Identity & Access Management, Cloud-Native Systems, and Scalable Full Stack Development.",
 };
-
-import { Navbar } from "@/components/layout/navbar";
-import { Footer } from "@/components/layout/footer";
 
 export default function RootLayout({
   children,
@@ -26,15 +27,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="scroll-smooth">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen flex flex-col`}
-      >
-        <Navbar />
-        <main className="flex-1">
-          {children}
-        </main>
-        <Footer />
+    <html lang="en">
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen flex flex-col`}>
+        <SmoothScroll>
+          <CustomCursor />
+          <Navbar />
+          <main className="flex-1">
+            {children}
+          </main>
+          <Footer />
+        </SmoothScroll>
       </body>
     </html>
   );
