@@ -10,8 +10,8 @@ export const portfolioData = {
     },
     resume: "/resume.pdf",
     socials: {
-      github: "https://github.com",
-      linkedin: "https://linkedin.com",
+      github: "https://github.com/sgupta98mnit",
+      linkedin: "https://www.linkedin.com/in/sumit-gupta-2a6406160/",
       email: "mailto:sgupta98mnit@gmail.com"
     }
   },
@@ -55,34 +55,34 @@ export const portfolioData = {
       description: "Event-Driven FinTech Microservices",
       longDescription: "A high-performance fintech platform built with NestJS and Next.js. Features API Gateway routing, Kafka-based event streaming, and a double-entry ledger. Implements robust fraud detection and idempotency keys (Redis) for secure transfers.",
       tech: ["NestJS", "Next.js", "Kafka", "PostgreSQL", "Redis", "Docker"],
-      link: "#"
+      link: "https://www.sumit-gupta.cloud/projects/fincore/"
     },
     {
       title: "Multi-Tenant Support Platform",
       description: "SaaS Backend with Strict Isolation",
       longDescription: "A scalable multi-tenant backend using Spring Boot 3. Enforces strict tenant isolation, RBAC, and event-driven workflows via Kafka. Includes full-text search (Postgres FTS), attachment storage (MinIO), and observability (OpenTelemetry).",
       tech: ["Spring Boot 3", "PostgreSQL", "MinIO", "Kafka", "OpenTelemetry"],
-      link: "#"
+      link: "https://www.sumit-gupta.cloud/projects/helpdesk"
     },
     {
       title: "Radiant Clothing",
       description: "Full-Stack E-Commerce App",
       longDescription: "A modern e-commerce platform built with React, Redux, and GraphQL. Features secure authentication (Firebase), payments (Stripe), and scalable state management (Redux-Saga). Deployed on VPS.",
       tech: ["React", "Redux", "GraphQL", "Firebase", "Stripe"],
-      link: "#"
+      link: "https://sumit-gupta.cloud/projects/radiant-clothing/"
+    },
+    {
+      title: "Monster Mania",
+      description: "Interactive Browser Game",
+      longDescription: "A browser-based interactive game built with modern web technologies.",
+      tech: ["JavaScript", "HTML5", "CSS3"],
+      link: "https://www.sumit-gupta.cloud/projects/monster-mania"
     },
     {
       title: "Real-time Chat Application",
       description: "Node.js & Socket.io Chat Platform",
       longDescription: "A real-time communication app built with Node.js and Socket.io. Supports multi-room chat, location sharing, and instant notifications. Templating via Mustache.js and tested with Mocha/Chai.",
       tech: ["Node.js", "Express", "Socket.io", "Mocha", "Mustache.js"],
-      link: "#"
-    },
-    {
-      title: "JavaFX Media Player",
-      description: "Cross-Platform Desktop App",
-      longDescription: "A rich desktop media player utilizing JavaFX and Java 8. Features MVC architecture, playlist management, drag-and-drop support, and performance optimizations.",
-      tech: ["Java", "JavaFX", "MVC"],
       link: "#"
     }
   ],

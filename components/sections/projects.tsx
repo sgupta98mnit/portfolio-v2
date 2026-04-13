@@ -42,13 +42,13 @@ export function Projects() {
                   </Link>
                 </div>
 
-                <h3 className="mb-2 text-xl font-bold group-hover:text-primary transition-colors">
-                  {project.title}
-                </h3>
-                <p className="mb-4 text-sm text-muted-foreground flex-1">
+                <p className="mb-1 text-xs font-medium uppercase tracking-wider text-primary/70">
                   {project.description}
                 </p>
-                <p className="mb-6 text-xs text-muted-foreground/80">
+                <h3 className="mb-3 text-xl font-bold group-hover:text-primary transition-colors">
+                  {project.title}
+                </h3>
+                <p className="mb-6 text-sm text-muted-foreground flex-1 leading-relaxed">
                   {project.longDescription}
                 </p>
 

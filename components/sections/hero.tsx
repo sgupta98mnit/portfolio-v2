@@ -7,7 +7,7 @@ import Link from "next/link";
 import { portfolioData } from "@/data/portfolio";
 
 export function Hero() {
-  const { name, role, subheading, cta, socials } = portfolioData.hero;
+  const { name, role, subheading, tagline, cta, socials } = portfolioData.hero;
 
   return (
     <section className="relative flex min-h-[90vh] flex-col justify-center px-4 md:px-6 pt-16 overflow-hidden">
@@ -33,8 +33,12 @@ export function Hero() {
             </span>
           </h1>
 
-          <p className="mb-8 max-w-2xl text-lg text-muted-foreground md:text-xl leading-relaxed">
+          <p className="mb-4 max-w-2xl text-lg text-muted-foreground md:text-xl leading-relaxed">
             {subheading}
+          </p>
+
+          <p className="mb-8 text-sm font-semibold uppercase tracking-widest text-primary/70">
+            {tagline}
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 mb-12">
