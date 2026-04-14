@@ -1,51 +1,92 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useState } from "react";
 import { motion, useMotionValue, useSpring } from "framer-motion";
 
 export function CustomCursor() {
-  const cursorX = useMotionValue(-100);
-  const cursorY = useMotionValue(-100);
+  // dot — raw motion values, set directly (no spring = instant)
+  const dotX = useMotionValue(-100);
+  const dotY = useMotionValue(-100);
 
-  const springX = useSpring(cursorX, { stiffness: 500, damping: 40 });
-  const springY = useSpring(cursorY, { stiffness: 500, damping: 40 });
+  // ring — gentle spring trail behind the dot
+  const ringX = useSpring(dotX, { stiffness: 180, damping: 28, mass: 0.4 });
+  const ringY = useSpring(dotY, { stiffness: 180, damping: 28, mass: 0.4 });
 
-  const trailX = useSpring(cursorX, { stiffness: 120, damping: 22 });
-  const trailY = useSpring(cursorY, { stiffness: 120, damping: 22 });
-
-  const isHovering = useRef(false);
+  const [hovering, setHovering] = useState(false);
+  const [visible, setVisible] = useState(false);
 
   useEffect(() => {
-    const move = (e: MouseEvent) => {
-      cursorX.set(e.clientX);
-      cursorY.set(e.clientY);
+    const onMove = (e: MouseEvent) => {
+      dotX.set(e.clientX);
+      dotY.set(e.clientY);
+      if (!visible) setVisible(true);
     };
 
-    const onEnter = () => { isHovering.current = true; };
-    const onLeave = () => { isHovering.current = false; };
+    const onEnter = () => setHovering(true);
+    const onLeave = () => setHovering(false);
 
-    window.addEventListener("mousemove", move);
-    document.querySelectorAll("a, button").forEach((el) => {
-      el.addEventListener("mouseenter", onEnter);
-      el.addEventListener("mouseleave", onLeave);
-    });
+    const onMouseLeave = () => setVisible(false);
+    const onMouseEnter = () => setVisible(true);
+
+    window.addEventListener("mousemove", onMove);
+    document.addEventListener("mouseleave", onMouseLeave);
+    document.addEventListener("mouseenter", onMouseEnter);
+
+    // use event delegation instead of querying static DOM
+    const handleOver = (e: MouseEvent) => {
+      const target = e.target as HTMLElement;
+      if (target.closest("a, button, [role='button'], input, textarea, select, label")) {
+        setHovering(true);
+      }
+    };
+    const handleOut = (e: MouseEvent) => {
+      const target = e.target as HTMLElement;
+      if (target.closest("a, button, [role='button'], input, textarea, select, label")) {
+        setHovering(false);
+      }
+    };
+
+    document.addEventListener("mouseover", handleOver);
+    document.addEventListener("mouseout", handleOut);
 
     return () => {
-      window.removeEventListener("mousemove", move);
+      window.removeEventListener("mousemove", onMove);
+      document.removeEventListener("mouseleave", onMouseLeave);
+      document.removeEventListener("mouseenter", onMouseEnter);
+      document.removeEventListener("mouseover", handleOver);
+      document.removeEventListener("mouseout", handleOut);
     };
-  }, [cursorX, cursorY]);
+  }, [dotX, dotY, visible]);
 
   return (
     <>
-      {/* dot */}
+      {/* dot — instant, no spring */}
       <motion.div
-        className="pointer-events-none fixed z-[9999] h-2 w-2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-white mix-blend-difference"
-        style={{ left: springX, top: springY }}
+        className="pointer-events-none fixed z-[9999] rounded-full bg-white mix-blend-difference"
+        style={{ left: dotX, top: dotY }}
+        animate={{
+          width: hovering ? 10 : 6,
+          height: hovering ? 10 : 6,
+          x: hovering ? "-50%" : "-50%",
+          y: hovering ? "-50%" : "-50%",
+          opacity: visible ? 1 : 0,
+        }}
+        transition={{ duration: 0.15, ease: "easeOut" }}
       />
-      {/* ring */}
+
+      {/* ring — trails behind */}
       <motion.div
-        className="pointer-events-none fixed z-[9998] h-8 w-8 -translate-x-1/2 -translate-y-1/2 rounded-full border border-white/40 mix-blend-difference"
-        style={{ left: trailX, top: trailY }}
+        className="pointer-events-none fixed z-[9998] rounded-full border mix-blend-difference"
+        style={{ left: ringX, top: ringY }}
+        animate={{
+          width: hovering ? 44 : 32,
+          height: hovering ? 44 : 32,
+          x: "-50%",
+          y: "-50%",
+          opacity: visible ? 1 : 0,
+          borderColor: hovering ? "rgba(167,139,250,0.8)" : "rgba(255,255,255,0.35)",
+        }}
+        transition={{ duration: 0.2, ease: "easeOut" }}
       />
     </>
   );

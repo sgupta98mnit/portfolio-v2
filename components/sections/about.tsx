@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { portfolioData } from "@/data/portfolio";
 
 const stats = [
-  { value: "3+", label: "Years Experience" },
+  { value: "4+", label: "Years Experience" },
   { value: "12", label: "Engineers Led" },
   { value: "10+", label: "SaaS Products" },
   { value: "40%", label: "Efficiency Gain" },

@@ -4,10 +4,13 @@ import { motion } from "framer-motion";
 import { portfolioData } from "@/data/portfolio";
 
 const categoryColors: Record<string, string> = {
-  "Full Stack & Backend": "from-violet-500/20 to-blue-500/20 border-violet-500/20 text-violet-300",
-  "Identity & Security (IAM)": "from-emerald-500/20 to-teal-500/20 border-emerald-500/20 text-emerald-300",
-  "Cloud & DevOps": "from-orange-500/20 to-amber-500/20 border-orange-500/20 text-orange-300",
-  "Data & Storage": "from-pink-500/20 to-rose-500/20 border-pink-500/20 text-pink-300",
+  "Languages":                  "from-violet-500/20 to-indigo-500/20 border-violet-500/20 text-violet-300",
+  "Frontend & Mobile":          "from-blue-500/20 to-cyan-500/20 border-blue-500/20 text-blue-300",
+  "Backend & Architecture":     "from-indigo-500/20 to-violet-500/20 border-indigo-500/20 text-indigo-300",
+  "Identity & Security (IAM)":  "from-emerald-500/20 to-teal-500/20 border-emerald-500/20 text-emerald-300",
+  "Data & Messaging":           "from-pink-500/20 to-rose-500/20 border-pink-500/20 text-pink-300",
+  "Cloud & DevOps":             "from-orange-500/20 to-amber-500/20 border-orange-500/20 text-orange-300",
+  "Testing & Observability":    "from-teal-500/20 to-emerald-500/20 border-teal-500/20 text-teal-300",
 };
 
 export function Skills() {
