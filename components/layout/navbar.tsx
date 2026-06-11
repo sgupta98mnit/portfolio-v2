@@ -1,115 +1,109 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import Link from "next/link";
-import { cn } from "@/lib/utils";
-import { Menu, X } from "lucide-react";
+import { Magnetic } from "@/components/ui/magnetic";
 
-const navLinks = [
-  { name: "About", href: "#about" },
-  { name: "Experience", href: "#experience" },
-  { name: "Projects", href: "#projects" },
-  { name: "Skills", href: "#skills" },
-  { name: "Contact", href: "#contact" },
+const NAV_LINKS = [
+  { name: "About", href: "#about", index: "01" },
+  { name: "Experience", href: "#experience", index: "02" },
+  { name: "Projects", href: "#projects", index: "03" },
+  { name: "Skills", href: "#skills", index: "04" },
+  { name: "Contact", href: "#contact", index: "05" },
 ];
 
-export function Navbar() {
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+const EASE = [0.76, 0, 0.24, 1] as const;
 
-  useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 40);
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+export function Navbar() {
+  const [open, setOpen] = useState(false);
 
   return (
-    <nav className="fixed top-0 z-50 w-full flex justify-center pt-5 px-4">
-      {/* pill nav */}
-      <motion.div
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-        className={cn(
-          "relative flex items-center justify-between gap-2 rounded-2xl px-5 py-3 transition-all duration-500 w-full max-w-3xl",
-          isScrolled
-            ? "glass border border-white/8 shadow-xl shadow-black/30"
-            : "bg-transparent"
-        )}
+    <>
+      <motion.header
+        className="fixed inset-x-0 top-0 z-[100] mix-blend-difference"
+        initial={{ y: -80 }}
+        animate={{ y: 0 }}
+        transition={{ duration: 0.8, ease: EASE, delay: 2.4 }}
       >
-        {/* logo */}
-        <Link href="/" className="text-sm font-bold tracking-tight shrink-0">
-          <span className="gradient-text">SG</span>
-          <span className="text-white/30">.</span>
-        </Link>
+        <nav className="flex items-center justify-between px-6 py-5 md:px-10">
+          <Magnetic>
+            <a href="#top" className="font-mono text-sm font-bold tracking-widest text-white">
+              SG<span className="text-white/50">©</span>
+            </a>
+          </Magnetic>
 
-        {/* desktop links */}
-        <div className="hidden md:flex items-center gap-1">
-          {navLinks.map((link) => (
-            <Link
-              key={link.name}
-              href={link.href}
-              className="px-3 py-1.5 text-sm text-white/50 hover:text-white rounded-lg hover:bg-white/5 transition-all duration-200"
-            >
-              {link.name}
-            </Link>
-          ))}
-        </div>
-
-        {/* resume CTA */}
-        <Link
-          href="/resume.pdf"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="hidden md:flex items-center gap-2 rounded-xl bg-white/8 hover:bg-white/14 border border-white/10 px-4 py-1.5 text-sm font-medium text-white transition-all duration-200 shrink-0"
-        >
-          Resume ↗
-        </Link>
-
-        {/* mobile toggle */}
-        <button
-          className="md:hidden p-1.5 text-white/70 hover:text-white"
-          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          aria-label="Toggle menu"
-        >
-          {isMobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
-        </button>
-      </motion.div>
-
-      {/* mobile menu */}
-      <AnimatePresence>
-        {isMobileMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -8, scale: 0.97 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: -8, scale: 0.97 }}
-            transition={{ duration: 0.2 }}
-            className="absolute top-[72px] left-4 right-4 glass border border-white/8 rounded-2xl p-4 shadow-2xl shadow-black/50"
-          >
-            <div className="flex flex-col gap-1">
-              {navLinks.map((link) => (
-                <Link
-                  key={link.name}
+          <ul className="hidden items-center gap-8 md:flex">
+            {NAV_LINKS.map((link) => (
+              <li key={link.href}>
+                <a
                   href={link.href}
-                  className="px-3 py-2.5 text-sm text-white/70 hover:text-white rounded-xl hover:bg-white/5 transition-all"
-                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="group relative font-mono text-xs uppercase tracking-[0.2em] text-white"
                 >
                   {link.name}
-                </Link>
-              ))}
-              <Link
-                href="/resume.pdf"
-                target="_blank"
-                className="mt-2 flex items-center justify-center gap-2 rounded-xl bg-white/8 border border-white/10 px-4 py-2.5 text-sm font-medium text-white"
-                onClick={() => setIsMobileMenuOpen(false)}
+                  <span className="absolute -bottom-1 left-0 h-px w-full origin-right scale-x-0 bg-white transition-transform duration-300 group-hover:origin-left group-hover:scale-x-100" />
+                </a>
+              </li>
+            ))}
+          </ul>
+
+          <button
+            onClick={() => setOpen(true)}
+            className="font-mono text-xs uppercase tracking-[0.2em] text-white md:hidden"
+            aria-label="Open menu"
+          >
+            Menu
+          </button>
+        </nav>
+      </motion.header>
+
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            className="fixed inset-0 z-[150] flex flex-col bg-lime px-6 py-5"
+            initial={{ y: "-100%" }}
+            animate={{ y: 0 }}
+            exit={{ y: "-100%" }}
+            transition={{ duration: 0.7, ease: EASE }}
+          >
+            <div className="flex items-center justify-between">
+              <span className="font-mono text-sm font-bold tracking-widest text-ink">
+                SG©
+              </span>
+              <button
+                onClick={() => setOpen(false)}
+                className="font-mono text-xs uppercase tracking-[0.2em] text-ink"
+                aria-label="Close menu"
               >
-                Resume ↗
-              </Link>
+                Close
+              </button>
             </div>
+
+            <ul className="flex flex-1 flex-col justify-center gap-2">
+              {NAV_LINKS.map((link, i) => (
+                <li key={link.href} className="overflow-hidden">
+                  <motion.a
+                    href={link.href}
+                    onClick={() => setOpen(false)}
+                    className="display flex items-baseline gap-4 text-5xl text-ink"
+                    initial={{ y: "110%" }}
+                    animate={{ y: 0 }}
+                    transition={{ duration: 0.6, ease: EASE, delay: 0.15 + i * 0.07 }}
+                  >
+                    <span className="font-mono text-xs tracking-widest">
+                      {link.index}
+                    </span>
+                    {link.name}
+                  </motion.a>
+                </li>
+              ))}
+            </ul>
+
+            <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-ink/60">
+              Senior Software Engineer — Full Stack / IAM
+            </p>
           </motion.div>
         )}
       </AnimatePresence>
-    </nav>
+    </>
   );
 }

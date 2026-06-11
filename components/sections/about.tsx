@@ -1,67 +1,72 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useRef } from "react";
+import { motion, useScroll, useTransform, type MotionValue } from "framer-motion";
 import { portfolioData } from "@/data/portfolio";
+import { SectionLabel, FadeUp } from "@/components/ui/reveal";
 
-const stats = [
-  { value: "4+", label: "Years Experience" },
-  { value: "12", label: "Engineers Led" },
-  { value: "10+", label: "SaaS Products" },
-  { value: "40%", label: "Efficiency Gain" },
+const STATS = [
+  { value: "4+", label: "Years engineering" },
+  { value: "10+", label: "Cloud apps shipped" },
+  { value: "12", label: "Engineers led" },
+  { value: "MS", label: "CS — University at Buffalo" },
 ];
+
+function Word({
+  children,
+  progress,
+  range,
+}: {
+  children: string;
+  progress: MotionValue<number>;
+  range: [number, number];
+}) {
+  const opacity = useTransform(progress, range, [0.15, 1]);
+  return (
+    <motion.span style={{ opacity }} className="mr-[0.3em] inline-block">
+      {children}
+    </motion.span>
+  );
+}
 
 export function About() {
   const { description } = portfolioData.about;
+  const ref = useRef<HTMLParagraphElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start 0.85", "end 0.45"],
+  });
+
+  const words = description.split(" ");
 
   return (
-    <section id="about" className="relative py-32 overflow-hidden">
-      {/* subtle orb */}
-      <div className="pointer-events-none absolute right-0 top-1/2 -translate-y-1/2 h-[400px] w-[400px] orb opacity-10"
-        style={{ background: "radial-gradient(circle, #7c3aed 0%, transparent 70%)" }} />
+    <section id="about" className="px-6 py-28 md:px-10 md:py-40">
+      <SectionLabel index="01" title="About" />
 
-      <div className="container mx-auto max-w-5xl px-4 md:px-6">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-
-          {/* text */}
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+      <p
+        ref={ref}
+        className="max-w-5xl text-2xl font-medium leading-snug text-bone md:text-4xl md:leading-snug"
+      >
+        {words.map((word, i) => (
+          <Word
+            key={i}
+            progress={scrollYProgress}
+            range={[i / words.length, Math.min(1, (i + 1) / words.length + 0.05)]}
           >
-            <span className="mb-4 inline-block text-xs font-semibold uppercase tracking-widest gradient-text">
-              About Me
-            </span>
-            <h2 className="mb-6 text-4xl font-bold leading-tight md:text-5xl text-white">
-              Building systems that{" "}
-              <span className="gradient-text">scale and secure.</span>
-            </h2>
-            <p className="text-base text-white/50 leading-relaxed">
-              {description}
-            </p>
-          </motion.div>
+            {word}
+          </Word>
+        ))}
+      </p>
 
-          {/* stat grid */}
-          <div className="grid grid-cols-2 gap-4">
-            {stats.map((stat, index) => (
-              <motion.div
-                key={stat.label}
-                initial={{ opacity: 0, y: 24 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
-                className="gradient-border glass rounded-2xl p-6 text-center group hover:glow transition-all duration-500"
-              >
-                <div className="text-4xl font-black gradient-text mb-2 group-hover:scale-110 transition-transform duration-300">
-                  {stat.value}
-                </div>
-                <div className="text-xs font-medium uppercase tracking-wider text-white/40">
-                  {stat.label}
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
+      <div className="mt-20 grid grid-cols-2 gap-px bg-line md:grid-cols-4">
+        {STATS.map((stat, i) => (
+          <FadeUp key={stat.label} delay={i * 0.08} className="bg-ink p-6 md:p-8">
+            <p className="display text-4xl text-lime md:text-6xl">{stat.value}</p>
+            <p className="mt-3 font-mono text-[10px] uppercase tracking-[0.2em] text-bone-dim">
+              {stat.label}
+            </p>
+          </FadeUp>
+        ))}
       </div>
     </section>
   );

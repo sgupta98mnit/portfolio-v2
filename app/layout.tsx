@@ -1,24 +1,25 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Archivo, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
-import { Navbar } from "@/components/layout/navbar";
-import { Footer } from "@/components/layout/footer";
 import { SmoothScroll } from "@/components/ui/smooth-scroll";
 import { CustomCursor } from "@/components/ui/cursor";
+import { Navbar } from "@/components/layout/navbar";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const archivo = Archivo({
+  variable: "--font-archivo",
   subsets: ["latin"],
+  axes: ["wdth"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const jetbrains = JetBrains_Mono({
+  variable: "--font-jetbrains",
   subsets: ["latin"],
 });
 
 export const metadata: Metadata = {
-  title: "Sumit Gupta | Senior Software Engineer",
-  description: "Senior Software Engineer specializing in Identity & Access Management, Cloud-Native Systems, and Scalable Full Stack Development.",
+  title: "Sumit Gupta — Senior Software Engineer",
+  description:
+    "Senior Software Engineer building scalable full stack systems, multi-tenant SaaS platforms, and secure Identity & Access Management solutions.",
 };
 
 export default function RootLayout({
@@ -28,14 +29,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen flex flex-col`}>
+      <body className={`${archivo.variable} ${jetbrains.variable} noise antialiased`}>
         <SmoothScroll>
           <CustomCursor />
           <Navbar />
-          <main className="flex-1">
-            {children}
-          </main>
-          <Footer />
+          {children}
         </SmoothScroll>
       </body>
     </html>

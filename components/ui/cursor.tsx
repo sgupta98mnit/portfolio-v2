@@ -1,93 +1,81 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { motion, useMotionValue, useSpring } from "framer-motion";
+import {
+  motion,
+  useMotionValue,
+  useSpring,
+  useReducedMotion,
+} from "framer-motion";
 
+/**
+ * Dual cursor: a solid lime dot that tracks 1:1 and a trailing ring that
+ * springs behind it. The ring expands over interactive targets and fills
+ * with a label over elements carrying [data-cursor-text].
+ */
 export function CustomCursor() {
-  // dot — raw motion values, set directly (no spring = instant)
-  const dotX = useMotionValue(-100);
-  const dotY = useMotionValue(-100);
-
-  // ring — gentle spring trail behind the dot
-  const ringX = useSpring(dotX, { stiffness: 180, damping: 28, mass: 0.4 });
-  const ringY = useSpring(dotY, { stiffness: 180, damping: 28, mass: 0.4 });
-
+  const [enabled, setEnabled] = useState(false);
   const [hovering, setHovering] = useState(false);
-  const [visible, setVisible] = useState(false);
+  const [label, setLabel] = useState("");
+  const reduced = useReducedMotion();
+
+  const x = useMotionValue(-100);
+  const y = useMotionValue(-100);
+  const ringX = useSpring(x, { stiffness: 350, damping: 30, mass: 0.6 });
+  const ringY = useSpring(y, { stiffness: 350, damping: 30, mass: 0.6 });
 
   useEffect(() => {
+    if (reduced || !window.matchMedia("(pointer: fine)").matches) return;
+    document.documentElement.classList.add("has-custom-cursor");
+
     const onMove = (e: MouseEvent) => {
-      dotX.set(e.clientX);
-      dotY.set(e.clientY);
-      if (!visible) setVisible(true);
+      setEnabled(true);
+      x.set(e.clientX);
+      y.set(e.clientY);
+      const target = (e.target as HTMLElement).closest(
+        "a, button, [data-cursor-text]"
+      ) as HTMLElement | null;
+      setHovering(!!target);
+      setLabel(target?.dataset.cursorText ?? "");
     };
-
-    const onEnter = () => setHovering(true);
-    const onLeave = () => setHovering(false);
-
-    const onMouseLeave = () => setVisible(false);
-    const onMouseEnter = () => setVisible(true);
 
     window.addEventListener("mousemove", onMove);
-    document.addEventListener("mouseleave", onMouseLeave);
-    document.addEventListener("mouseenter", onMouseEnter);
-
-    // use event delegation instead of querying static DOM
-    const handleOver = (e: MouseEvent) => {
-      const target = e.target as HTMLElement;
-      if (target.closest("a, button, [role='button'], input, textarea, select, label")) {
-        setHovering(true);
-      }
-    };
-    const handleOut = (e: MouseEvent) => {
-      const target = e.target as HTMLElement;
-      if (target.closest("a, button, [role='button'], input, textarea, select, label")) {
-        setHovering(false);
-      }
-    };
-
-    document.addEventListener("mouseover", handleOver);
-    document.addEventListener("mouseout", handleOut);
-
     return () => {
       window.removeEventListener("mousemove", onMove);
-      document.removeEventListener("mouseleave", onMouseLeave);
-      document.removeEventListener("mouseenter", onMouseEnter);
-      document.removeEventListener("mouseover", handleOver);
-      document.removeEventListener("mouseout", handleOut);
+      document.documentElement.classList.remove("has-custom-cursor");
     };
-  }, [dotX, dotY, visible]);
+  }, [reduced, x, y]);
+
+  if (!enabled) return null;
 
   return (
     <>
-      {/* dot — instant, no spring */}
       <motion.div
-        className="pointer-events-none fixed z-[9999] rounded-full bg-white mix-blend-difference"
-        style={{ left: dotX, top: dotY }}
-        animate={{
-          width: hovering ? 10 : 6,
-          height: hovering ? 10 : 6,
-          x: hovering ? "-50%" : "-50%",
-          y: hovering ? "-50%" : "-50%",
-          opacity: visible ? 1 : 0,
-        }}
-        transition={{ duration: 0.15, ease: "easeOut" }}
+        aria-hidden
+        className="pointer-events-none fixed left-0 top-0 z-[300] size-2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-lime"
+        style={{ x, y }}
       />
-
-      {/* ring — trails behind */}
       <motion.div
-        className="pointer-events-none fixed z-[9998] rounded-full border mix-blend-difference"
-        style={{ left: ringX, top: ringY }}
+        aria-hidden
+        className="pointer-events-none fixed left-0 top-0 z-[299] flex items-center justify-center rounded-full border"
+        style={{ x: ringX, y: ringY, translateX: "-50%", translateY: "-50%" }}
         animate={{
-          width: hovering ? 44 : 32,
-          height: hovering ? 44 : 32,
-          x: "-50%",
-          y: "-50%",
-          opacity: visible ? 1 : 0,
-          borderColor: hovering ? "rgba(167,139,250,0.8)" : "rgba(255,255,255,0.35)",
+          width: label ? 80 : hovering ? 56 : 32,
+          height: label ? 80 : hovering ? 56 : 32,
+          backgroundColor: label ? "#c6f24e" : "rgba(198, 242, 78, 0)",
+          borderColor: label
+            ? "rgba(198, 242, 78, 0)"
+            : "rgba(234, 234, 226, 0.5)",
         }}
-        transition={{ duration: 0.2, ease: "easeOut" }}
-      />
+        transition={{ type: "spring", stiffness: 400, damping: 28 }}
+        initial={false}
+      >
+        {label && (
+          <span className="font-mono text-[10px] font-bold uppercase tracking-widest text-ink">
+            {label}
+          </span>
+        )}
+      </motion.div>
     </>
   );
 }

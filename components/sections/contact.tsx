@@ -1,98 +1,83 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { ArrowUpRight } from "lucide-react";
 import { portfolioData } from "@/data/portfolio";
-import Link from "next/link";
-import { Mail, Linkedin, Github, ArrowRight } from "lucide-react";
+import { LineReveal, FadeUp } from "@/components/ui/reveal";
+import { Magnetic } from "@/components/ui/magnetic";
 
 export function Contact() {
-  const { socials } = portfolioData.hero;
+  const { socials, resume } = portfolioData.hero;
+  const email = socials.email.replace("mailto:", "");
 
   return (
-    <section id="contact" className="relative py-40 overflow-hidden">
-      {/* big center glow */}
-      <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
-        <div className="h-[600px] w-[600px] orb opacity-20"
-          style={{ background: "radial-gradient(circle, #7c3aed 0%, transparent 65%)" }} />
-      </div>
-      <div className="pointer-events-none absolute inset-0 bg-grid opacity-40" />
+    <section
+      id="contact"
+      className="relative flex min-h-[90vh] flex-col justify-center overflow-hidden px-6 py-28 md:px-10"
+    >
+      <p className="mb-8 font-mono text-xs uppercase tracking-[0.3em] text-lime">
+        05 / Contact
+      </p>
 
-      <div className="container mx-auto max-w-4xl px-4 md:px-6 text-center relative">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-        >
-          <span className="mb-6 inline-block text-xs font-semibold uppercase tracking-widest gradient-text">
-            Get In Touch
+      <h2 className="display text-[clamp(3rem,11vw,11rem)]">
+        <LineReveal>
+          <span className="text-bone">Let&apos;s build</span>
+        </LineReveal>
+        <LineReveal delay={0.1}>
+          <span className="outline-text">something</span>
+        </LineReveal>
+        <LineReveal delay={0.2}>
+          <span className="text-bone">
+            solid<span className="text-lime">.</span>
           </span>
+        </LineReveal>
+      </h2>
 
-          <h2 className="mb-6 text-5xl font-black leading-tight md:text-7xl text-white">
-            Let's build something{" "}
-            <span className="gradient-text">secure & scalable.</span>
-          </h2>
-
-          <p className="mb-12 text-lg text-white/40 max-w-xl mx-auto leading-relaxed">
-            I'm currently open to new opportunities. Whether you have a project
-            in mind or just want to chat — my inbox is always open.
-          </p>
-
-          {/* CTA */}
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16"
+      <FadeUp delay={0.3} className="mt-14 flex flex-col gap-8 md:flex-row md:items-center">
+        <Magnetic>
+          <a
+            href={socials.email}
+            data-cursor-text="Say hi"
+            className="inline-flex items-center gap-3 rounded-full bg-lime px-8 py-4 font-mono text-xs font-bold uppercase tracking-[0.2em] text-ink transition-transform duration-300 hover:scale-105"
           >
-            <Link
-              href={socials.email}
-              className="group flex items-center gap-3 rounded-2xl bg-gradient-to-r from-violet-600 to-blue-500 px-8 py-4 text-base font-semibold text-white shadow-2xl shadow-violet-500/30 transition-all duration-300 hover:shadow-violet-500/50 hover:scale-[1.03]"
-            >
-              <Mail className="h-5 w-5" />
-              Say Hello
-              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-            </Link>
+            {email}
+            <ArrowUpRight className="size-4" />
+          </a>
+        </Magnetic>
 
-            <Link
-              href="/resume.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-2 rounded-2xl border border-white/10 bg-white/5 px-8 py-4 text-base font-semibold text-white backdrop-blur-sm transition-all duration-300 hover:bg-white/10 hover:border-white/20"
-            >
-              View Resume ↗
-            </Link>
-          </motion.div>
-
-          {/* socials */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.4 }}
-            className="flex items-center justify-center gap-8"
+        <div className="flex items-center gap-6 font-mono text-[10px] uppercase tracking-[0.25em] text-bone-dim">
+          <a
+            href={socials.github}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="transition-colors duration-300 hover:text-lime"
           >
-            <Link
-              href={socials.linkedin}
-              target="_blank"
-              className="flex items-center gap-2 text-sm text-white/30 hover:text-white transition-colors duration-200"
-            >
-              <Linkedin className="h-4 w-4" />
-              LinkedIn
-            </Link>
-            <div className="h-px w-6 bg-white/10" />
-            <Link
-              href={socials.github}
-              target="_blank"
-              className="flex items-center gap-2 text-sm text-white/30 hover:text-white transition-colors duration-200"
-            >
-              <Github className="h-4 w-4" />
-              GitHub
-            </Link>
-          </motion.div>
-        </motion.div>
-      </div>
+            GitHub
+          </a>
+          <a
+            href={socials.linkedin}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="transition-colors duration-300 hover:text-lime"
+          >
+            LinkedIn
+          </a>
+          <a
+            href={resume}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="transition-colors duration-300 hover:text-lime"
+          >
+            Resume ↓
+          </a>
+        </div>
+      </FadeUp>
+
+      <p
+        aria-hidden
+        className="display pointer-events-none absolute -bottom-6 right-0 select-none text-[clamp(6rem,20vw,20rem)] leading-none text-bone/[0.03]"
+      >
+        SG©
+      </p>
     </section>
   );
 }

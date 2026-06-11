@@ -1,32 +1,60 @@
-import Link from "next/link";
+"use client";
+
+import { useEffect, useState } from "react";
 import { portfolioData } from "@/data/portfolio";
 
 export function Footer() {
   const { socials } = portfolioData.hero;
+  const [time, setTime] = useState("");
+
+  useEffect(() => {
+    const update = () =>
+      setTime(
+        new Date().toLocaleTimeString("en-US", {
+          hour: "2-digit",
+          minute: "2-digit",
+          second: "2-digit",
+          hour12: false,
+        })
+      );
+    update();
+    const id = setInterval(update, 1000);
+    return () => clearInterval(id);
+  }, []);
 
   return (
-    <footer className="border-t border-white/5 py-10">
-      <div className="container mx-auto max-w-5xl px-4 md:px-6 flex flex-col md:flex-row items-center justify-between gap-6">
-        <div className="flex flex-col items-center md:items-start gap-0.5">
-          <span className="text-sm font-bold gradient-text">Sumit Gupta</span>
-          <p className="text-xs text-white/30">Senior Software Engineer · IAM</p>
-        </div>
+    <footer className="border-t border-line px-6 py-8 md:px-10">
+      <div className="flex flex-col items-center justify-between gap-6 font-mono text-[10px] uppercase tracking-[0.25em] text-mute md:flex-row">
+        <span>© {new Date().getFullYear()} Sumit Gupta</span>
 
-        <div className="flex items-center gap-6 text-xs text-white/30">
-          <Link href={socials.github} target="_blank" className="hover:text-white transition-colors">
+        <div className="flex items-center gap-6">
+          <a
+            href={socials.github}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="transition-colors duration-300 hover:text-lime"
+          >
             GitHub
-          </Link>
-          <Link href={socials.linkedin} target="_blank" className="hover:text-white transition-colors">
+          </a>
+          <a
+            href={socials.linkedin}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="transition-colors duration-300 hover:text-lime"
+          >
             LinkedIn
-          </Link>
-          <Link href={socials.email} className="hover:text-white transition-colors">
+          </a>
+          <a
+            href={socials.email}
+            className="transition-colors duration-300 hover:text-lime"
+          >
             Email
-          </Link>
+          </a>
         </div>
 
-        <p className="text-xs text-white/20">
-          © {new Date().getFullYear()} Sumit Gupta
-        </p>
+        <span className="tabular-nums">
+          Local — <span className="text-bone-dim">{time || "00:00:00"}</span>
+        </span>
       </div>
     </footer>
   );
