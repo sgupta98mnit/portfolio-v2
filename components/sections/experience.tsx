@@ -76,7 +76,7 @@ function Card({
 }
 
 export function Experience() {
-  const { experience } = portfolioData;
+  const experience = portfolioData.experience.filter((job) => !job.hidden);
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: ref,

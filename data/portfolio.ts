@@ -24,6 +24,7 @@ export const portfolioData = {
       company: "Saz Tech",
       role: "Zoho Developer",
       period: "April 2026 – Present",
+      hidden: false,
       highlights: [
         "Developing and customizing Zoho CRM and Zoho Creator applications to streamline business workflows.",
         "Building Deluge scripts and custom functions to automate processes across the Zoho ecosystem.",
@@ -35,6 +36,7 @@ export const portfolioData = {
       company: "EduTrend",
       role: "Software Engineer",
       period: "Feb 2026 – Present",
+      hidden: false,
       highlights: [
         "Built features for a multi-tenant education platform using TypeScript, GraphQL, MongoDB, Redis, and Clerk, with strict tenant-scoped data access and RBAC.",
         "Implemented dynamic form builder workflows across GraphQL resolvers, Mongoose services, and Expo React Native, enabling configurable data collection for education teams.",
@@ -48,6 +50,7 @@ export const portfolioData = {
       company: "miniOrange",
       role: "Senior Software Engineer",
       period: "July 2021 – July 2024",
+      hidden: false,
       highlights: [
         "Led a 12-member team to deliver 10+ cloud-based Shopify apps; owned planning, code reviews, releases, and production support in an Agile/Scrum setup.",
         "Implemented enterprise IAM using SAML, OAuth 2.0, and JWT, reducing onboarding friction and improving security posture for customer deployments.",
@@ -59,9 +62,24 @@ export const portfolioData = {
       tech: ["Java", "Spring Boot", "Python", "Redis", "GraphQL", "PHP", "AWS", "Docker", "Kubernetes"]
     },
     {
+      company: "Cognizant",
+      role: "Software Developer",
+      period: "Jan 2019 – Dec 2020",
+      hidden: false,
+      highlights: [
+        "Engineered Spring Boot microservices to automate insurance claim workflows, reducing claim processing time and supporting high-volume monthly transactions.",
+        "Implemented Kafka-based event-driven architecture to reduce inter-service coupling and improve transaction processing throughput for insurance claims.",
+        "Optimized Oracle database queries, indexing strategies, and Redis caching mechanisms, improving application response times and user experience.",
+        "Automated build and deployment pipelines using Jenkins, Docker, and Kubernetes, reducing release effort and accelerating production deployments.",
+        "Strengthened application security using OAuth 2.0, JWT, and centralized monitoring, reducing production incidents and improving availability."
+      ],
+      tech: ["Java", "Spring Boot", "Kafka", "Oracle Database", "Redis", "Jenkins", "Docker", "Kubernetes", "OAuth 2.0", "JWT"]
+    },
+    {
       company: "ServiceNow",
       role: "Software Development Intern",
       period: "July 2020 – Nov 2020",
+      hidden: true,
       highlights: [
         "Integrated ML-driven enhancements into ServiceNow Universal Request using JavaScript (client) and Java (server) APIs, improving request routing and automation.",
         "Delivered mobile UI improvements using HTML5, CSS3, and ServiceNow UI frameworks, improving usability across common request flows.",
